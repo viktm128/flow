@@ -19,11 +19,11 @@ As the game became more complicated, multiple variants were added to the game in
 ## Data Structure?
 Since we are starting with a rectangular board, a list of list seems like a natural choice of data structure. To begin, we will mark each start and end node with pairs of alphabetical letters. For example a 5x5 board with 4 flows to complete might be viewed like this
 
-[comment] # (TODO add in a picture of a starting array, Flow Free Classic Pack Level 11)
+[comment]: # (TODO add in a picture of a starting array, Flow Free Classic Pack Level 11)
 
 We then will fill complete the flows by filling in the array with corresponding numbers. So a --> 0, b --> 1, c --> 2, etc. A completed board may look like this
 
-[comment] # (TODO add in a picture of a completed board)  
+[comment]: # (TODO add in a picture of a completed board)  
 
 ### File Structure
 All boards will follow these specifications
@@ -32,13 +32,13 @@ All boards will follow these specifications
 - any intermediary nodes that are already filled in will be listed between the starting and ending nodes
 
 Consider this example file below which represents the graph above
-`
+```
 5 5
 a: 0 0 0 2
 b: 1 0 1 4
 c: 2 0 4 4
 d: 0 4 2 2
-`
+```
 
 ## Algorithms
 
