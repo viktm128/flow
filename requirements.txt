@@ -1,2 +1,5 @@
 # list of python packages for installation.
 Pathlib
+pycodestyle
+pydocstyle
+pylint

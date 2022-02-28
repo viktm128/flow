@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# test
+#
+# run full test suite
+#
+# Stop on errors, print commands
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+set -x
+
+echo "Begin style checks"
+
+pycodestyle *.py
+
+pydocstyle *.py
+
+pylint *.py
+
+# grep TOOD
+
+# TODO figure out why all style checks aren't running
+# TODO figure out how to modularize this using command line arguments
