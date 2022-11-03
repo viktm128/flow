@@ -1,44 +1,32 @@
 """Basic helper functions and other utility functions defined here."""
 
-def c2i(c):
-    """Change character to integer."""
-    return ord(c) - 97
-
-def i2c(i):
-    """Change integer to character."""
-    chr(i + 97)
-
-
-
 def read_board(filename):
     """Read board from specification format."""
     fstream = open(str(filename))
     line = fstream.readline().split()
-    [n, m] = map(int, line)  # so clean, how fun
+    [x, y] = map(int, line)  # so clean, how fun
 
 
     # cannot initialize a list of lists using multiplication
-    board = []
-    for _ in range(m):
-        board.append([None] * n)
+    board = [0] * y
+    for i, _ in enumerate(board):
+        board[i] = [0] * x
 
     num_flows = 0
     while True:
-        # TODO make this whole thing suck less
-        line = fstream.readline().split()
-        if not line:
+        flow = fstream.readline().split()
+        if not flow:
+            print("this is needed")
             break
-        letter = line.pop(0)[0]
+
         num_flows += 1
-        coords = list(map(int, line))
-        for i in range(int(len(coords)/2)):  # TODO figure out why integer division is failing
-            if i == 0 or i == len(coords)/2 - 1:
-                board[coords[2*i + 1]][coords[2*i]] = letter  # TODO confirm width and height are not mixed
-            else:
-                board[coords[2*i + 1]][coords[2*i]] = c2i(letter)
+
+        # need to enumerate it y, x because of weird printing rules
+        board[int(flow[0][3])][int(flow[0][1])] = num_flows
+        board[int(flow[1][3])][int(flow[1][1])] = num_flows
 
 
-    return (n, m, num_flows, board)
+    return (x, y, num_flows, board)
 
 
 def print_board(board):
@@ -47,3 +35,8 @@ def print_board(board):
     # TODO make this a bit prettier.
     for row in board:
         print(row)
+
+
+if __name__ == "__main__":
+    _, _, _, board = read_board('test_cases/test_basic.txt')
+    print_board(board)
